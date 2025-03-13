@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from reader import *  # Import function from reader.py
+from reader import *  # Imports function from reader.py
 
 app = Flask(__name__)
 
