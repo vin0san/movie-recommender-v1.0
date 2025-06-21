@@ -1,15 +1,20 @@
 from flask import Flask, render_template, request
+from dotenv import load_dotenv
+import os
 
 from recommender import Recommender
+
+# Load environment variables from .env
+load_dotenv()
+tmdb_api_key = os.getenv("TMDB_API_KEY")
 
 recommender = Recommender(
     movie_path="ml-latest-small/movies.csv",
     tag_path="ml-latest-small/tags.csv",
     ratings_path="ml-latest-small/ratings.csv",
     links_path="ml-latest-small/links.csv",
-    tmdb_api_key="0996ad4e45ae81cdb61ca4d31e29dbd2"
+    tmdb_api_key=tmdb_api_key
 )
-
 
 app = Flask(__name__)
 
@@ -29,7 +34,7 @@ def home():
             mood=selected_mood
         )
 
-        # Only show matched_title if movie_name was used
+        # Show matched title only if input title was given
         if movie_name.strip():
             matched_title = getattr(recommender, "last_matched_title", None)
 
