@@ -1,3 +1,12 @@
+from dotenv import load_dotenv
+import os
+
+# Load from .env file
+load_dotenv()
+api_key = os.getenv("TMDB_API_KEY")
+
+
+
 import pandas as pd
 import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
