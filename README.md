@@ -1,35 +1,61 @@
-# Movie Recommendation Website
-This is a Movie Recommendation Web App built with Flask (Python backend) and a clean HTML/CSS frontend. The app suggests movies based on user input and displays poster images, titles, and other relevant details in a responsive and retro-minimalist layout.
+# 🎬 Movie Recommender v1.0
 
-# Features
- Search a movie and get recommendations based on content similarity
+A personalized movie recommendation system built with Python, Flask, and the TMDb API.
 
-🎨 Clean, retro-minimal UI design
+It suggests movies based on:
+- 🎞️ Movie title (including similar, sequels & prequels)
+- 🎭 Genre
+- 🧠 Mood (user tags)
+- 📊 Popularity (average rating & vote count)
 
-🖼️ Displays movie posters* and titles
+With a simple, retro-inspired UI (because I don’t bang my head around frontend stuff).
 
-🧠 Uses precomputed similarity scores (cosine similarity or content-based filtering)
+---
 
-🔥 Lightweight and fast Flask backend.
+## 🧠 Features
 
-# Tech Stack
+- 🔍 **Title-based Search** — Find movies similar to a specific title.
+- 🎯 **Genre & Mood Filters** — Browse by mood (e.g., "dark", "uplifting") and genres.
+- 🧮 **Smart Ranking** — Uses TF-IDF & Cosine Similarity + rating data.
+- 🎞️ **Posters via TMDb API** — Fetches movie posters dynamically.
+- 🖥️ **Retro UI Vibes** — Simple UI styled like an old imageboard for that vintage feel.
 
-| Layer    | Technology                       |
-| -------- | -------------------------------- |
-| Backend  | Python, Flask                    |
-| Frontend | HTML5, CSS3                      |
-| Data     | CSV dataset (movies metadata)    |
-| ML Model | Cosine Similarity (from sklearn) |
+---
 
-# How It Works
-User Inputs Movie Name
+## 🛠️ Tech Stack
 
-On the homepage (index.html), the user enters a movie title.
+- **Backend**: Python, Flask
+- **Machine Learning**: scikit-learn (TF-IDF + cosine similarity)
+- **Dataset**: [MovieLens (ml-latest-small)](https://grouplens.org/datasets/movielens/)
+- **API**: [TMDb API](https://www.themoviedb.org/documentation/api)
+- **Frontend**: HTML, CSS (retro-inspired)
 
-Flask Backend Handles Request
 
-app.py uses the input to find the most similar movies using a similarity matrix.
+## 🚀 Getting Started
 
-Recommendations Displayed
+### 1. Clone the Repo
 
-The results are passed to recommend.html, which renders recommended movies with poster images.
+```bash
+git clone https://github.com/yourusername/movie-recommender.git
+cd movie-recommender
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Set Your API Key
+
+Create a .env file and place your API key
+```
+TMDB_API_KEY=your_tmdb_api_key_here
+```
+### 4. Run the App
+
+```bash
+python app.py
+```
+
+### Note: This project is for fun, and no deployment is planned.
