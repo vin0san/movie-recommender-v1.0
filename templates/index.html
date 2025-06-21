@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <style>
+        body {
+            background-color: #f0eada;
+            font-family: "Courier New", Courier, monospace;
+            color: #000;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            border-bottom: 2px solid #000;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 30px;
+            padding: 10px;
+            border: 1px solid #000;
+            background: #fffffc;
+            border-radius: 20px;
+        }
+        input, select, button {
+            font-family: inherit;
+            font-size: 14px;
+            padding: 5px;
+            margin: 4px 0;
+            border: 1px solid #000;
+            background-color: #fff;
+            color: #000;
+        }
+        button {
+            background-color: #eaeaea;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .movie {
+            width: 150px;
+            border: 1px solid #000;
+            background: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        .movie img {
+            width: 100%;
+            height: auto;
+            display: block;
+            
+        }
+        .notice {
+            font-style: italic;
+            margin-top: 10px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Movie Recommender v1.0</h1>
+
+    <form method="POST">
+        <label for="movie">Movie title (optional):</label><br>
+        <input type="text" name="movie" id="movie" size="40" alter="enter a title"><br><br>
+
+        <label for="genre">Genre:</label><br>
+        <select name="genre" id="genre">
+            <option value="">-- Select Genre --</option>
+            <option>Action</option>
+            <option>Comedy</option>
+            <option>Drama</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+            <option>Romance</option>
+            <option>Sci-Fi</option>
+            <option>Thriller</option>
+        </select><br><br>
+
+        <label for="mood">Mood:</label><br>
+        <select name="mood" id="mood">
+            <option value="">-- Select Mood --</option>
+            <option>dark</option>
+            <option>funny</option>
+            <option>inspiring</option>
+            <option>melancholic</option>
+        </select><br><br>
+
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    {% if matched_title %}
+        <div class="notice">
+            Showing recommendations based on: <b>{{ matched_title }}</b>
+        </div>
+    {% endif %}
+
+    {% if recommendations %}
+        <div class="results">
+            {% for movie in recommendations %}
+                <div class="movie">
+                    {% if movie.poster %}
+                        <img src="{{ movie.poster }}" alt="Poster">
+                    {% else %}
+                        <div style="height: 225px; background: #ddd; display: flex; align-items: center; justify-content: center;">No Image</div>
+                    {% endif %}
+                    <div style="margin-top: 5px;">{{ movie.title }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% elif recommendations is not none %}
+        <div class="notice">No results found. Try changing your filters.</div>
+    {% endif %}
+
+</body>
+</html>

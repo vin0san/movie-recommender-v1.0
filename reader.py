@@ -1,9 +1,16 @@
-import pandas as pd
+# reader.py
 
-# Loading dataset from CSV file
-df = pd.read_csv("ml-latest-small/movies.csv")
 
-# Function to recommend movies based on popularity
-def get_recommendations(movie_name):
-    recommendations = df[df['title'].str.contains(movie_name, case=False, na=False)]
-    return recommendations['title'].tolist()[:5]  # Return top 5 matches
+'''this file is mean't for testing the recommender module
+and can be used as playground for testing the recommender'''
+
+from recommender import Recommender
+
+recommender = Recommender(
+    "ml-latest-small/movies.csv",
+    "ml-latest-small/tags.csv",
+    "ml-latest-small/ratings.csv"
+)
+
+print(recommender.get_recommendations("superman"))
+
